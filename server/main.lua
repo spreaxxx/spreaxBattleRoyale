@@ -56,7 +56,7 @@ local function IsPlayerInSafeZone(playerId)
     local distance = #(playerCoords - vector3(Config.CayoCenter.x, Config.CayoCenter.y, Config.CayoCenter.z))
     
     -- Adicionando margem de tolerância de 5 metros para evitar falsos positivos
-    return distance <= (currentRadius + 15.0)
+    return distance <= (currentRadius + 8.0)
 end
 
 -- Adicionando função para finalizar zona manualmente

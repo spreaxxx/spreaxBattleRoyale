@@ -53,7 +53,7 @@ local function IsPlayerInSafeZone()
     local playerCoords = GetEntityCoords(PlayerPedId())
     local distance = #(playerCoords - vector3(Config.CayoCenter.x, Config.CayoCenter.y, Config.CayoCenter.z))
     -- Adicionando margem de tolerância de 5 metros para evitar falsos positivos
-    return distance <= (currentRadius + 15.0)
+    return distance <= (currentRadius + 8.0)
 end
 
 -- Função para verificar se o jogador está em Cayo Perico

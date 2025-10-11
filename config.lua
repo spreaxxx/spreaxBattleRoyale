@@ -24,11 +24,7 @@ Config.DamageSettings = {
 }
 
 -- Coordenadas do Centro de Cayo Perico
-Config.CayoCenter = {
-    x = 4813.06,
-    y = -4319.06,
-    z = 2.0
-} 
+Config.CayoCenter = { x = 4813.06, y = -4319.06, z = 2.0 } 
 
 -- Raio inicial e final da zona
 Config.InitialRadius = 1500.0 -- Raio inicial (metros)
