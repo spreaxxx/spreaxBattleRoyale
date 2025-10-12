@@ -211,7 +211,7 @@ CreateThread(function()
     end
 end)
 
-RegisterNetEvent('cayo-battleroyale:startZone', function()
+RegisterNetEvent('spreaxBattleRoyale:startZone', function()
     zoneActive = true
     currentRadius = Config.InitialRadius
     timeRemaining = Config.ZoneDuration
@@ -221,7 +221,7 @@ RegisterNetEvent('cayo-battleroyale:startZone', function()
     end
 end)
 
-RegisterNetEvent('cayo-battleroyale:updateZone', function(newRadius, newTimeRemaining)
+RegisterNetEvent('spreaxBattleRoyale:updateZone', function(newRadius, newTimeRemaining)
     currentRadius = newRadius
     timeRemaining = newTimeRemaining
     if radiusBlip then
@@ -235,7 +235,7 @@ RegisterNetEvent('cayo-battleroyale:updateZone', function(newRadius, newTimeRema
     end
 end)
 
-RegisterNetEvent('cayo-battleroyale:endZone', function()
+RegisterNetEvent('spreaxBattleRoyale:endZone', function()
     zoneActive = false
     currentRadius = Config.InitialRadius
     timeRemaining = 0
@@ -251,7 +251,7 @@ RegisterNetEvent('cayo-battleroyale:endZone', function()
     end
 end)
 
-RegisterNetEvent('cayo-battleroyale:receiveZoneStatus', function(active, radius)
+RegisterNetEvent('spreaxBattleRoyale:receiveZoneStatus', function(active, radius)
     zoneActive = active
     currentRadius = radius
     if active then
@@ -262,13 +262,13 @@ RegisterNetEvent('cayo-battleroyale:receiveZoneStatus', function(active, radius)
 end)
 
 
-RegisterNetEvent('cayo-battleroyale:takeDamage', function(damageAmount)
+RegisterNetEvent('spreaxBattleRoyale:takeDamage', function(damageAmount)
     if Config.Debug then
         print('[Cayo Battle Royale] Efeito de dano aplicado: ' .. damageAmount)
     end
 end)
 
-RegisterNetEvent('cayo-battleroyale:applyDamage', function(damageAmount)
+RegisterNetEvent('spreaxBattleRoyale:applyDamage', function(damageAmount)
     local playerPed = PlayerPedId()
     local currentHealth = GetEntityHealth(playerPed)
     if currentHealth > 0 then
@@ -287,7 +287,7 @@ RegisterNetEvent('cayo-battleroyale:applyDamage', function(damageAmount)
     end
 end)
 
-RegisterNetEvent('cayo-battleroyale:forceHealthUpdate', function(newHealth)
+RegisterNetEvent('spreaxBattleRoyale:forceHealthUpdate', function(newHealth)
     local playerPed = PlayerPedId()
     SetEntityHealth(playerPed, newHealth)
     
@@ -297,5 +297,5 @@ RegisterNetEvent('cayo-battleroyale:forceHealthUpdate', function(newHealth)
 end)
 
 AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
-    TriggerServerEvent('cayo-battleroyale:requestZoneStatus')
+    TriggerServerEvent('spreaxBattleRoyale:requestZoneStatus')
 end)

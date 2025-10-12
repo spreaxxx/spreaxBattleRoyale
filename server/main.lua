@@ -49,7 +49,7 @@ local function EndZoneManually(source)
     minRadiusReached = false
     minRadiusReachedTime = 0
     currentRadius = Config.InitialRadius
-    TriggerClientEvent('cayo-battleroyale:endZone', -1)
+    TriggerClientEvent('spreaxBattleRoyale:endZone', -1)
     TriggerClientEvent('QBCore:Notify', -1, Config.Messages['zone_ended_manually'], 'success')
     if Config.Debug then
         local Player = QBCore.Functions.GetPlayer(source)
@@ -78,7 +78,7 @@ QBCore.Commands.Add(Config.Command, 'Iniciar zona de batalha em Cayo Perico', {}
     currentRadius = Config.InitialRadius
     minRadiusReached = false
     minRadiusReachedTime = 0
-    TriggerClientEvent('cayo-battleroyale:startZone', -1)
+    TriggerClientEvent('spreaxBattleRoyale:startZone', -1)
     TriggerClientEvent('QBCore:Notify', -1, Config.Messages['zone_started'], 'primary')
     if Config.Debug then
         print('[Cayo Battle Royale] Zona iniciada por: ' .. Player.PlayerData.name)
@@ -95,7 +95,7 @@ CreateThread(function()
                     zoneActive = false
                     minRadiusReached = false
                     minRadiusReachedTime = 0
-                    TriggerClientEvent('cayo-battleroyale:endZone', -1)
+                    TriggerClientEvent('spreaxBattleRoyale:endZone', -1)
                     TriggerClientEvent('QBCore:Notify', -1, Config.Messages['zone_ended'], 'success')
                     
                     if Config.Debug then
@@ -110,7 +110,7 @@ CreateThread(function()
             else
                 timeRemaining = -1 
             end
-            TriggerClientEvent('cayo-battleroyale:updateZone', -1, currentRadius, timeRemaining)
+            TriggerClientEvent('spreaxBattleRoyale:updateZone', -1, currentRadius, timeRemaining)
         end
         Wait(Config.UpdateInterval)
     end
@@ -125,7 +125,7 @@ CreateThread(function()
                 if IsPlayerInCayo(playerId) then
                     local isInSafeZone = IsPlayerInSafeZone(playerId)
                     if not isInSafeZone then
-                        TriggerClientEvent('cayo-battleroyale:applyDamage', playerId, Config.DamageAmount)
+                        TriggerClientEvent('spreaxBattleRoyale:applyDamage', playerId, Config.DamageAmount)
                         if Config.Debug then
                             local playerPed = GetPlayerPed(playerId)
                             local playerCoords = GetEntityCoords(playerPed)
@@ -143,9 +143,9 @@ CreateThread(function()
     end
 end)
 
-RegisterNetEvent('cayo-battleroyale:requestZoneStatus', function()
+RegisterNetEvent('spreaxBattleRoyale:requestZoneStatus', function()
     local source = source
-    TriggerClientEvent('cayo-battleroyale:receiveZoneStatus', source, zoneActive, currentRadius)
+    TriggerClientEvent('spreaxBattleRoyale:receiveZoneStatus', source, zoneActive, currentRadius)
 end)
 
 QBCore.Commands.Add(Config.EndCommand, 'Finalizar zona de batalha em Cayo Perico manualmente', {}, false, function(source, args)
