@@ -18,12 +18,12 @@ Config.SafeZoneDamageInterval = 8.0 -- Distância de segurança para evitar fals
 Config.CayoDistanceLimit = 3000.0 -- Raio aproximado de Cayo Perico
 
 -- Configurações específicas para o sistema de dano
-Config.DamageSettings = {
-    ignoreGodMode = false, -- Ignorar modo deus para teste
-    forceHealthUpdate = true, -- Forçar atualização de vida
-    showDamageEffects = false, -- Mostrar efeitos visuais de dano
-    debugDamage = false -- Debug específico para dano
-}
+-- Config.DamageSettings = {
+--     ignoreGodMode = false, -- Ignorar modo deus para teste
+--     forceHealthUpdate = true, -- Forçar atualização de vida
+--     showDamageEffects = false, -- Mostrar efeitos visuais de dano
+--     debugDamage = false -- Debug específico para dano
+-- }
 
 -- Coordenadas do Centro de Cayo Perico
 Config.CayoCenter = { x = 4813.06, y = -4319.06, z = 2.0 } 
@@ -89,5 +89,7 @@ Config.Messages = {
     ['zone_active'] = 'Já existe uma zona ativa!',
     ['zone_min_radius'] = 'A zona atingiu o raio mínimo e permanecerá assim até ser finalizada manualmente!',
     ['zone_ended_manually'] = 'A zona de batalha foi finalizada manualmente por um administrador!',
+    ['command_start_battleroyale'] = 'Iniciar zona de batalha em Cayo Perico',
+    ['command_end_battleroyale'] = 'Finalizar zona de batalha em Cayo Perico manualmente',
     ['no_zone_active'] = 'Não há nenhuma zona ativa para finalizar!'
 }

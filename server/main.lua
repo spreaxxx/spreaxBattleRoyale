@@ -58,7 +58,7 @@ local function EndZoneManually(source)
     return true
 end
 
-QBCore.Commands.Add(Config.Command, 'Iniciar zona de batalha em Cayo Perico', {}, false, function(source, args)
+QBCore.Commands.Add(Config.Command, Config.Messages['command_start_battleroyale'], {}, false, function(source, args)
     local Player = QBCore.Functions.GetPlayer(source)
     if not Player then return end
     if not QBCore.Functions.HasPermission(source, Config.Permission) then
@@ -148,7 +148,7 @@ RegisterNetEvent('spreaxBattleRoyale:requestZoneStatus', function()
     TriggerClientEvent('spreaxBattleRoyale:receiveZoneStatus', source, zoneActive, currentRadius)
 end)
 
-QBCore.Commands.Add(Config.EndCommand, 'Finalizar zona de batalha em Cayo Perico manualmente', {}, false, function(source, args)
+QBCore.Commands.Add(Config.EndCommand, Config.Messages['command_end_battleroyale'], {}, false, function(source, args)
     local Player = QBCore.Functions.GetPlayer(source)
     if not Player then return end
     if not QBCore.Functions.HasPermission(source, Config.Permission) then
