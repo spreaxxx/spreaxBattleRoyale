@@ -10,7 +10,7 @@ local function IsPlayerInCayo(playerId)
     local playerPed = GetPlayerPed(playerId)
     local playerCoords = GetEntityCoords(playerPed)
     local distance = #(playerCoords - vector3(Config.CayoCenter.x, Config.CayoCenter.y, Config.CayoCenter.z))
-    return distance <= 3000.0 -- Raio aproximado de Cayo Perico
+    return distance <= Config.CayoDistanceLimit 
 end
 
 local function CalculateCurrentRadius()
@@ -37,7 +37,7 @@ local function IsPlayerInSafeZone(playerId)
     local playerPed = GetPlayerPed(playerId)
     local playerCoords = GetEntityCoords(playerPed)
     local distance = #(playerCoords - vector3(Config.CayoCenter.x, Config.CayoCenter.y, Config.CayoCenter.z))
-    return distance <= (currentRadius + 8.0)
+    return distance <= (currentRadius + Config.SafeZoneDamageInterval)
 end
 
 local function EndZoneManually(source)

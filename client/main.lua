@@ -46,13 +46,13 @@ end
 local function IsPlayerInSafeZone()
     local playerCoords = GetEntityCoords(PlayerPedId())
     local distance = #(playerCoords - vector3(Config.CayoCenter.x, Config.CayoCenter.y, Config.CayoCenter.z))
-    return distance <= (currentRadius + 8.0)
+    return distance <= (currentRadius + Config.SafeZoneDamageInterval)
 end
 
 local function IsPlayerInCayo()
     local playerCoords = GetEntityCoords(PlayerPedId())
     local distance = #(playerCoords - vector3(Config.CayoCenter.x, Config.CayoCenter.y, Config.CayoCenter.z))
-    return distance <= 3000.0
+    return distance <= Config.CayoDistanceLimit
 end
 
 local function UpdateMinimapZone()
@@ -84,7 +84,6 @@ local function UpdateMinimapZone()
     end
 end
 
--- Função para renderizar zona no mundo 3D
 local function RenderWorldZone()
     if not Config.WorldZone.enabled or not zoneActive then return end
     local playerCoords = GetEntityCoords(PlayerPedId())
@@ -162,7 +161,7 @@ CreateThread(function()
                 SetTextEdge(1, 0, 0, 0, 255)
                 SetTextCentre(true)
                 SetTextEntry("STRING")
-                AddTextComponentString("Zona: " .. math.floor(currentRadius) .. "m | Tempo: " .. timeText)
+                AddTextComponentString(Config.Messages['zone_timer_settings'])
                 DrawText(0.5, 0.05)
             elseif timeRemaining == -1 then
                 SetTextFont(4)
@@ -173,7 +172,7 @@ CreateThread(function()
                 SetTextEdge(1, 0, 0, 0, 255)
                 SetTextCentre(true)
                 SetTextEntry("STRING")
-                AddTextComponentString("ZONA FINAL")
+                AddTextComponentString(Config.Messages['zone_final'])
                 DrawText(0.5, 0.05)
             end
             if not IsPlayerInSafeZone() then
@@ -185,7 +184,7 @@ CreateThread(function()
                 SetTextEdge(1, 0, 0, 0, 255)
                 SetTextCentre(true)
                 SetTextEntry("STRING")
-                AddTextComponentString("ESTÁS FORA DA ZONA SEGURA!")
+                AddTextComponentString(Config.Messages['zone_outsite'])
                 DrawText(0.5, 0.1)
             end
         end
@@ -231,7 +230,7 @@ RegisterNetEvent('spreaxBattleRoyale:updateZone', function(newRadius, newTimeRem
         SetBlipAlpha(radiusBlip, 100)
     end
     if Config.Debug then
-        print('[Cayo Battle Royale] Zona atualizada: ' .. currentRadius .. 'm')
+        print('[Cayo Battle Royale] Zone Updated: ' .. currentRadius .. 'm')
     end
 end)
 
@@ -264,7 +263,7 @@ end)
 
 RegisterNetEvent('spreaxBattleRoyale:takeDamage', function(damageAmount)
     if Config.Debug then
-        print('[Cayo Battle Royale] Efeito de dano aplicado: ' .. damageAmount)
+        print('[Cayo Battle Royale] Damage Effect Applied: ' .. damageAmount)
     end
 end)
 
@@ -277,12 +276,12 @@ RegisterNetEvent('spreaxBattleRoyale:applyDamage', function(damageAmount)
         -- SetFlash(0, 0, 100, 500, 100)
         -- PlaySoundFrontend(-1, "Bed", "WastedSounds", true)
         -- StartScreenEffect("DeathFailOut", 2000, false)
-        TriggerEvent('QBCore:Notify', string.format('Levaste %d de dano! Vida: %d', damageAmount, newHealth), 'error')
+        TriggerEvent('QBCore:Notify', string.format(Config.Messages['zone_damage_client'], damageAmount, newHealth), 'error')
         if Config.Debug then
-            print('[Cayo Battle Royale] Dano aplicado no cliente:')
-            print('  - Vida antes: ' .. currentHealth)
-            print('  - Dano: ' .. damageAmount)
-            print('  - Vida depois: ' .. newHealth)
+            print('[Cayo Battle Royale] Damage Applied to client:')
+            print('  - Life before: ' .. currentHealth)
+            print('  - Damage: ' .. damageAmount)
+            print('  - Life after: ' .. newHealth)
         end
     end
 end)

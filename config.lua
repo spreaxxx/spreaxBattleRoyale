@@ -14,6 +14,8 @@ Config.DamageAmount = 10 -- Quantidade de dano por tick
 Config.MaxHealth = 200 -- Vida máxima do jogador
 Config.StopAtMinRadius = true -- Se true, a zona para de encolher ao atingir o raio final
 Config.MinRadiusReachedTime = 0 -- Tempo quando a zona atingiu o raio mínimo (usado internamente)
+Config.SafeZoneDamageInterval = 8.0 -- Distância de segurança para evitar falsos positivos
+Config.CayoDistanceLimit = 3000.0 -- Raio aproximado de Cayo Perico
 
 -- Configurações específicas para o sistema de dano
 Config.DamageSettings = {
@@ -74,6 +76,10 @@ Config.WorldZone = {
 
 -- Mensagens
 Config.Messages = {
+    ['zone_timer_settings'] = "Zona: " .. math.floor(currentRadius) .. "m | Tempo: " .. timeText,
+    ['zone_final'] = 'ZONA FINAL',
+    ['zone_outsite'] = 'ESTÁS FORA DA ZONA SEGURA!',
+    ['zone_damage_client'] = 'Levaste %d de dano! Vida: %d',
     ['zone_started'] = 'A zona de batalha foi iniciada em Cayo Perico!',
     ['zone_shrinking'] = 'A zona está encolhendo! Tempo restante: %s',
     ['zone_damage'] = 'Você está fora da zona segura! Vida: %s',
