@@ -34,7 +34,7 @@ Config.ZoneDuration = 3600
 
 -- How often (in milliseconds) the server sends zone updates to all players.
 -- 2000 ms = every 2 seconds. Lower = smoother zone shrink, more server load.
-Config.UpdateInterval = 2000
+Config.UpdateInterval = 1000
 
 -- How often (in milliseconds) the server checks who is outside the zone
 -- and deals damage to them.
@@ -64,7 +64,7 @@ Config.MinRadiusReachedTime = 0
 -- considered "safe". This prevents players standing exactly on the
 -- border from flickering between safe and damaged states.
 -- Increase this if players on the edge report getting damaged unexpectedly.
-Config.SafeZoneDamageInterval = 8.0
+Config.SafeZoneDamageInterval = 0.0
 
 -- The maximum distance (in meters) from the island center that the script
 -- considers "still on Cayo Perico". Players further than this are ignored
